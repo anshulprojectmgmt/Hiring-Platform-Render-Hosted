@@ -71,8 +71,10 @@ function App() {
       emailOrUsername: credentials.username,
       password: credentials.password,
     });
+
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
+
     setUser(data.user);
     navigate("/");
   };
@@ -148,8 +150,8 @@ function App() {
         <Route path="/camera2/:cid" element={<Camera2 />} />
         {/* <Route path="/camera3/:cid" element={<Camera3 />} /> */}
         <Route path="/login-dashboard" element={<Login />} />
-        {/* <Route path="/dashboard/:hrId" element={<Dashboard />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/:hrid" element={<Dashboard />} />
         <Route path="/:hrid/:test" element={<TestResult />} />
         <Route path="/:candidateNo" element={<DetailedResult />} />
         <Route path="/capture" element={<CameraCapture />} />

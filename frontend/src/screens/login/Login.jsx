@@ -23,13 +23,13 @@ const Login = () => {
       toast.error(data.error);
     }else{
       toast.success("logged in to dashboard");
-      localStorage.setItem('email', data.email);
+      localStorage.setItem('dashboardEmail', data.email);
       // await dispatch({type: "UPDATE_DASHBOARD_INFO", hrname:data.hrname, totaltests:data.tests});
       setHrData({
         email:"",
     password:"",
       })
-      navigate(`/dashboard/${data.hrid}`)
+      navigate("/dashboard")
     }
 
   }
