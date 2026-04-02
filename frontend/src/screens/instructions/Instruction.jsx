@@ -17,7 +17,9 @@ import PermissionsCheck from "../../components/permissions-check/PermissionsChec
 import UserFeedbackInstruction from "../../components/user-feedback-instruction/UserFeedbackInstruction";
 
 const Instruction = () => {
-  const currentpage = useSelector((state) => state.instructionState.currentpage);
+  const currentpage = useSelector(
+    (state) => state.instructionState.currentpage,
+  );
   return (
     <>
       <div className="instruction-fullscreen">
@@ -25,18 +27,29 @@ const Instruction = () => {
           <div className=" logo">AiPlanet</div>
         </div>
         <div className="instruction-body">
-        {currentpage === 1 ? <Warning /> : currentpage === 2 
-                           ? <Angle2 /> :  currentpage === 3
-                           ? <Cam2UserVerify /> : currentpage === 4 
-                           ?  <Cam2Instruction />  : currentpage === 5 
-                           ? <Angle /> : currentpage === 6 
-                           ? <Face /> : currentpage === 7
-                           ? <Device /> : currentpage === 8
-                           ? <Audio /> : currentpage === 9
-                           ?<UserFeedbackInstruction /> : <PermissionsCheck />
-                            }
+          {currentpage === 1 ? (
+            <Warning />
+          ) : currentpage === 2 ? (
+            <Angle2 />
+          ) : currentpage === 3 ? (
+            <Cam2UserVerify />
+          ) : currentpage === 4 ? (
+            <Cam2Instruction />
+          ) : currentpage === 5 ? (
+            <Angle />
+          ) : currentpage === 6 ? (
+            <Face />
+          ) : currentpage === 7 ? (
+            <Device />
+          ) : currentpage === 8 ? (
+            <Audio />
+          ) : currentpage === 9 ? (
+            <UserFeedbackInstruction />
+          ) : (
+            <PermissionsCheck />
+          )}
 
-{/* {currentpage === 1 ? <Warning /> : currentpage === 2 ? <Angle2 />
+          {/* {currentpage === 1 ? <Warning /> : currentpage === 2 ? <Angle2 />
            : currentpage === 3 ? <Angle /> 
            : currentpage === 4 ? <Face /> : currentpage === 5 
            ? <Device /> : <Audio />} */}

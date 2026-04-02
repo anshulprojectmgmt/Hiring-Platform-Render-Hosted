@@ -99,23 +99,50 @@ function App() {
     <>
       <ProfilePopup user={user} onLogout={handleLogout} />
       <Routes>
-        <Route path="/signup" element={
-          <PublicOnlyRoute>
-            {showOtp && pendingEmail ? (
-              <OtpVerify email={pendingEmail} onVerified={() => { setShowOtp(false); setPendingEmail(""); window.location.href = "/login"; }} />
-            ) : (
-              <Signup onSignup={handleSignup} />
-            )}
-          </PublicOnlyRoute>
-        } />
-        <Route path="/login" element={
-          <PublicOnlyRoute>
-            <LoginAuth onLogin={handleLogin} />
-          </PublicOnlyRoute>
-        } />
+        <Route
+          path="/signup"
+          element={
+            <PublicOnlyRoute>
+              {showOtp && pendingEmail ? (
+                <OtpVerify
+                  email={pendingEmail}
+                  onVerified={() => {
+                    setShowOtp(false);
+                    setPendingEmail("");
+                    window.location.href = "/login";
+                  }}
+                />
+              ) : (
+                <Signup onSignup={handleSignup} />
+              )}
+            </PublicOnlyRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicOnlyRoute>
+              <LoginAuth onLogin={handleLogin} />
+            </PublicOnlyRoute>
+          }
+        />
         <Route path="/" element={<Landing />} />
-        <Route path="/create" element={<ProtectedRoute><CreateTest /></ProtectedRoute>} />
-        <Route path="/payment" element={<ProtectedRoute><PaymentPage /></ProtectedRoute>} />
+        <Route
+          path="/create"
+          element={
+            <ProtectedRoute>
+              <CreateTest />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <ProtectedRoute>
+              <PaymentPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/home" element={<Home />} />
         <Route path="/test" element={<Test />} />
         <Route path="/testend" element={<EndScreen />} />
@@ -123,15 +150,16 @@ function App() {
         <Route path="/camera2/:cid" element={<Camera2 />} />
         {/* <Route path="/camera3/:cid" element={<Camera3 />} /> */}
         <Route path="/login-dashboard" element={<Login />} />
-        <Route path="/dashboard/:hrId" element={<Dashboard />} />
+        {/* <Route path="/dashboard/:hrId" element={<Dashboard />} /> */}
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/:hrid/:test" element={<TestResult />} />
         <Route path="/:candidateNo" element={<DetailedResult />} />
-        <Route path="/capture" element={<CameraCapture />}  />
+        <Route path="/capture" element={<CameraCapture />} />
         <Route path="/recording" element={<Recording />} />
         <Route path="/add-question" element={<QuestionForm />} />
         <Route path="/subjective" element={<Subjective />} />
-        <Route path="/speech-super" element={<ScreenRecorder /> } />
-        <Route path="/speech-ace" element={<SpeechAce /> } />
+        <Route path="/speech-super" element={<ScreenRecorder />} />
+        <Route path="/speech-ace" element={<SpeechAce />} />
         <Route path="/permissions" element={<PermissionsCheck />} />
         <Route path="/user-feedback" element={<UserFeedback />} />
         <Route path="/feedback-inst" element={<UserFeedbackInstruction />} />
