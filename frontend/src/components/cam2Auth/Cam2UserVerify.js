@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import Webcam from "react-webcam";
 import { Buffer } from "buffer";
 import HashLoader from "react-spinners/HashLoader";
-import BASE_URL from "../../Api";
 
 const Cam2UserVerify = () => {
   const dispatch = useDispatch();
