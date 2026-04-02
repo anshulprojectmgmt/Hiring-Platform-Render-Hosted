@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { checkSubscription } from "../../utility/subscription";
 import "./Landing.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import image from "../../assests/landingpage.svg";
 import clientsLogo from "../../assests/clientslogo";
 import aiImage from "../../assests/ai.svg";
@@ -12,6 +12,7 @@ import Device from "../../components/videos/Device";
 import Audio from "../../components/videos/Audio";
 
 const Landing = () => {
+  const navigate = useNavigate();
   const [procFeature, setFeature] = useState(1);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   // console.log(procFeature);
@@ -22,7 +23,7 @@ const Landing = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   const handleCreateTestClick = async (e) => {
@@ -30,7 +31,7 @@ const Landing = () => {
     // Check subscription status before showing modal
     const sub = await checkSubscription();
     if (sub.status === "active") {
-      window.location.href = "/create";
+      navigate("/create");
     } else {
       setShowPaymentModal(true);
     }
@@ -38,7 +39,7 @@ const Landing = () => {
 
   const handleProceedPayment = () => {
     setShowPaymentModal(false);
-    window.location.href = "/payment";
+    navigate("/payment");
   };
 
   const handleCancelPayment = () => {
@@ -120,9 +121,9 @@ const Landing = () => {
               </Link>
             )}
             <div className="desc">OR</div>
-            <a href="/home">
+            <Link to="/home">
               <button className="ctabutton">Join test</button>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="landing-page-right">

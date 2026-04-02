@@ -10,7 +10,7 @@ import EndScreen from "./screens/end/EndScreen";
 import Home from "./screens/registration/Registration";
 import Landing from "./screens/landing/Landing";
 import Test from "./screens/test/Test";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Instruction from "./screens/instructions/Instruction";
@@ -28,7 +28,6 @@ import CameraCapture from "../src/components/camera-capture/camera-capture";
 import Recording from "./components/recordings/Recording";
 import QuestionForm from "./screens/questionform/QuestionForm";
 import Subjective from "./components/subjective/Subjective";
-import SpeechSuper from "./screens/super-speech/super-speech";
 import SpeechAce from "./screens/speechAce/SpeechAce";
 import ScreenRecorder from "./screens/super-speech/Screen-Recorder";
 import PermissionsCheck from "./components/permissions-check/PermissionsCheck";
@@ -36,6 +35,7 @@ import UserFeedback from "./components/user-feedback-form/UserFeedback";
 import UserFeedbackInstruction from "./components/user-feedback-instruction/UserFeedbackInstruction";
 
 function App() {
+  const navigate = useNavigate();
   const [pendingEmail, setPendingEmail] = useState("");
   const [showOtp, setShowOtp] = useState(false);
   const [user, setUser] = useState(() => {
@@ -63,7 +63,7 @@ function App() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
-    window.location.href = "/login";
+    navigate("/login");
   };
   // Login handler
   const handleLogin = async (credentials) => {
@@ -74,14 +74,13 @@ function App() {
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
     setUser(data.user);
-    window.location.href = "/";
+    navigate("/");
   };
 
   // ProtectedRoute component
   const ProtectedRoute = ({ children }) => {
     if (!user) {
-      window.location.href = "/login";
-      return null;
+      return <Navigate to="/login" replace />;
     }
     return children;
   };
@@ -89,8 +88,7 @@ function App() {
   // Wrapper to redirect logged-in users away from login/signup
   const PublicOnlyRoute = ({ children }) => {
     if (user) {
-      window.location.href = "/";
-      return null;
+      return <Navigate to="/" replace />;
     }
     return children;
   };
@@ -109,7 +107,7 @@ function App() {
                   onVerified={() => {
                     setShowOtp(false);
                     setPendingEmail("");
-                    window.location.href = "/login";
+                    navigate("/login");
                   }}
                 />
               ) : (
