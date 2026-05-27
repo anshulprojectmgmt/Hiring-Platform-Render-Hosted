@@ -186,7 +186,7 @@ router.post("/questions", async (req, res) => {
     } else if (testtype === "subjective") {
       // replace sample test ID  here
       if (testCode === "oM35Gz1Wh1w2VQB") {
-        subjIds = [new ObjectId("689c1e34304c58ea1704005a")];
+        subjIds = [new ObjectId("6a1698f4f1f2ae9bf920bdc0")];
       } else {
         subjIds = [
           new ObjectId("689c1e34304c58ea1704005a"),
