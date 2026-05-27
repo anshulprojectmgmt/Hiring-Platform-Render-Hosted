@@ -186,10 +186,10 @@ router.post("/questions", async (req, res) => {
     } else if (testtype === "subjective") {
       // replace sample test ID  here
       if (testCode === "oM35Gz1Wh1w2VQB") {
-        subjIds = [new ObjectId("67fcf0399219df29ed76f7aa")];
+        subjIds = [new ObjectId("689c1e34304c58ea1704005a")];
       } else {
         subjIds = [
-          new ObjectId("689c1e34304c58ea1704005a"), // repalce 690f218da30abf930f77d9bd
+          new ObjectId("689c1e34304c58ea1704005a"),
           new ObjectId("689c1e5b304c58ea1704005b"),
           new ObjectId("689c1e67304c58ea1704005c"),
           new ObjectId("690f218da30abf930f77d9bd"),
@@ -204,12 +204,10 @@ router.post("/questions", async (req, res) => {
         res.json({ success: true, que: problems });
       } catch (error) {
         console.log("failed to receive subjective questions=", error);
-        res
-          .status(500)
-          .json({
-            success: false,
-            message: "Failed to receive subjective questions",
-          });
+        res.status(500).json({
+          success: false,
+          message: "Failed to receive subjective questions",
+        });
       }
     } else if (testtype === "coding+subjective") {
       let problems = [];
